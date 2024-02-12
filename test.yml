@@ -4,10 +4,6 @@
   gather_facts: false
   tasks:
 
-  - name: Set SSH Port
-    set_fact:
-      ansible_port: 2222
-
   - name: Gather system resources
     community.routeros.command:
       commands:
