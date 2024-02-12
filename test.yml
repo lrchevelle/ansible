@@ -1,7 +1,8 @@
 ---
 - name: RouterOS test with network_cli connection
   hosts: routers
-  ansible_port: 2222
+  set_fact:
+    ansible_port: 2222
   gather_facts: false
   tasks:
 
