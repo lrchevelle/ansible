@@ -1,0 +1,15 @@
+---
+- hosts: test
+  gather_facts: true
+  tasks:
+    - name: Get logging configuration facts
+      cisco.ios.ios_logging_global:
+      register: log_facts
+
+    - name: Find configured syslog hosts
+      set_fact:
+        syslog_hosts: "{{ log_facts.ansible_facts['logging']['global'].get('hostname', []) }}"
+
+    - name: Display configured syslog hosts
+      debug:
+        msg: "Configured syslog hosts: {{ syslog_hosts }}"
