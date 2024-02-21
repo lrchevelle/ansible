@@ -1,0 +1,12 @@
+---
+- hosts: test
+  gather_facts: false
+  tasks:
+    - name: Get logging configuration facts
+      cisco.ios.ios_logging_global:
+        state: gathered
+      register: log_facts
+
+    - name: Display configured syslog hosts
+      debug:
+        msg: "Configured syslog hosts: {{ log_facts['gathered']['hosts'] }}"
